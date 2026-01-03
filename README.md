@@ -1,7 +1,7 @@
 # ML_lab_model_2
 ---
 # 🍷 Wine Quality Predictor
-
+### Deployed app: https://wine-quality-predictor-nine.vercel.app/
 **Wine Quality Predictor** is an AI-powered web application that predicts wine quality based on physicochemical properties. Built with **React** for the frontend and **FastAPI** for the backend, it uses a **Decision Tree machine learning pipeline** to classify wines into three categories: **Substandard**, **Satisfactory**, and **Premium**.
 
 ---
