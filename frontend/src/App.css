@@ -1,0 +1,891 @@
+/* =========================================================================
+   APP.CSS - WINE QUALITY PREDICTOR (UPDATED FOR NEW CLASS NAMES)
+   ========================================================================= */
+
+:root {
+  --wine-red: #722f37;
+  --wine-dark: #4a1f26;
+  --wine-light: #a84b57;
+  --gold: #d4af37;
+  --cream: #f9f6f0;
+  
+  /* Updated colors for new classes */
+  --substandard: #ef4444;
+  --substandard-dark: #dc2626;
+  --satisfactory: #f59e0b;
+  --satisfactory-dark: #d97706;
+  --premium: #10b981;
+  --premium-dark: #059669;
+  
+  /* Dark mode colors */
+  --dark-bg: #0a0a0a;
+  --dark-surface: #111111;
+  --dark-surface-light: #1a1a1a;
+  --dark-border: #222222;
+  --dark-border-light: #333333;
+  --dark-text: #e5e5e5;
+  --dark-text-secondary: #a1a1a1;
+  --dark-text-tertiary: #666666;
+  
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   CONTAINER CENTERING & DARK MATTE MODE
+   ======================================== */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--dark-bg);
+  min-height: 100vh;
+  color: var(--dark-text);
+  -webkit-font-smoothing: antialiased;
+  display: flex; /* Add for centering */
+  justify-content: center; /* Add for centering */
+  align-items: flex-start; /* Add for centering */
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wine-red);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wine-light);
+}
+
+/* ========================================
+   APP CONTAINER - DARK MATTE MODE
+   ======================================== */
+.app-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--dark-surface);
+  border-radius: 24px;
+  border: 1px solid var(--dark-border);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ========================================
+   HEADER - DARK MODE
+   ======================================== */
+.header {
+  background: linear-gradient(90deg, var(--dark-surface) 0%, var(--dark-surface-light) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.logo-container {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(114, 47, 55, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: rotate(-15deg);
+}
+
+.logo {
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.header-text h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--wine-light) 0%, #e5e5e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.header-text p {
+  color: var(--dark-text-secondary);
+  font-size: 1rem;
+}
+
+.model-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--wine-light) 0%, var(--wine-red) 100%);
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(114, 47, 55, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   MAIN CONTENT - DARK MODE
+   ======================================== */
+.main {
+  flex: 1;
+  padding: 2rem 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+  align-items: start; /* SOLUTION 1 - Add this line */
+}
+
+/* Also add this for better control */
+.form-card {
+  height: fit-content; /* Prevent it from stretching */
+}
+
+/* ========================================
+   CARDS - DARK MODE
+   ======================================== */
+.card {
+  background: var(--dark-surface-light);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid var(--dark-border);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  border-color: var(--dark-border-light);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark-text);
+}
+
+.card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card-header svg {
+  color: var(--wine-light);
+}
+
+/* ========================================
+   FORM - DARK MODE
+   ======================================== */
+.form-section {
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--dark-border);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--dark-border-light);
+}
+
+.section-title svg {
+  color: var(--wine-light);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-group label span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.label-value {
+  color: var(--wine-light);
+  font-weight: 700;
+  font-size: 1rem;
+  background: rgba(181, 131, 141, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+}
+
+.form-group input[type="range"] {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, var(--wine-light) 0%, var(--wine-red) 100%);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--wine-red);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.form-group input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--dark-text-secondary);
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.preset-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: var(--dark-bg);
+  border: 2px solid var(--dark-border-light);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.preset-btn:hover {
+  border-color: var(--wine-light);
+  color: var(--wine-light);
+  background: rgba(181, 131, 141, 0.1);
+  transform: translateY(-2px);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, var(--wine-red) 0%, var(--wine-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 4px 15px rgba(114, 47, 55, 0.3);
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(114, 47, 55, 0.4);
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--dark-border-light);
+}
+
+.btn-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--substandard);
+  border-radius: 8px;
+  color: var(--substandard-dark);
+  margin-top: 1rem;
+}
+
+/* ========================================
+   RESULTS CARD - HUG CONTENT, NO SCROLL
+   ======================================== */
+.results-card {
+  position: sticky;
+  top: 2rem;
+  /* REMOVED: max-height: calc(100vh - 9rem); */
+  /* REMOVED: overflow-y: auto; */
+  height: fit-content; /* Add to hug content */
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--dark-text-secondary);
+}
+
+.empty-icon {
+  color: var(--dark-border-light);
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--dark-border-light);
+  border-top-color: var(--wine-light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+.loading-state p {
+  font-size: 1.1rem;
+  color: var(--dark-text);
+  font-weight: 500;
+}
+
+/* ========================================
+   QUALITY BADGE - UPDATED CLASS NAMES
+   ======================================== */
+.quality-badge {
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quality-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+/* UPDATED: New class names */
+.quality-badge.premium {
+  background: linear-gradient(135deg, var(--premium) 0%, var(--premium-dark) 100%);
+  color: white;
+}
+
+.quality-badge.satisfactory {
+  background: linear-gradient(135deg, var(--satisfactory) 0%, var(--satisfactory-dark) 100%);
+  color: white;
+}
+
+.quality-badge.substandard {
+  background: linear-gradient(135deg, var(--substandard) 0%, var(--substandard-dark) 100%);
+  color: white;
+}
+
+.quality-icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quality-badge h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.quality-range {
+  font-size: 1rem;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.confidence-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   PROBABILITY BARS - UPDATED CLASS NAMES
+   ======================================== */
+.probability-section {
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--dark-border);
+}
+
+.probability-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 1.25rem;
+}
+
+.probability-bar {
+  margin-bottom: 1rem;
+}
+
+.prob-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.prob-name {
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+  font-size: 0.95rem;
+}
+
+.prob-value {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* UPDATED: New class names */
+.prob-value.premium { color: var(--premium); }
+.prob-value.satisfactory { color: var(--satisfactory); }
+.prob-value.substandard { color: var(--substandard); }
+
+.prob-track {
+  height: 28px;
+  background: var(--dark-surface);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--dark-border);
+}
+
+.prob-fill {
+  height: 100%;
+  border-radius: 14px;
+  transition: width 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* UPDATED: New class names */
+.prob-fill.premium {
+  background: linear-gradient(90deg, var(--premium) 0%, var(--premium-dark) 100%);
+}
+
+.prob-fill.satisfactory {
+  background: linear-gradient(90deg, var(--satisfactory) 0%, var(--satisfactory-dark) 100%);
+}
+
+.prob-fill.substandard {
+  background: linear-gradient(90deg, var(--substandard) 0%, var(--substandard-dark) 100%);
+}
+
+/* ========================================
+   RECOMMENDATION BOX
+   ======================================== */
+.recommendation-box {
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 6px solid var(--wine-light);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.recommendation-box h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendation-box h4::before {
+  content: '🍷';
+  font-size: 1.25rem;
+}
+
+.recommendation-box p {
+  color: var(--dark-text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* ========================================
+   TOP FACTORS
+   ======================================== */
+.top-factors {
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--dark-border);
+}
+
+.top-factors h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: 1.25rem;
+}
+
+.factor-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--dark-surface);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--dark-border);
+  transition: all 0.2s;
+}
+
+.factor-item:hover {
+  border-color: var(--wine-light);
+  box-shadow: 0 2px 8px rgba(114, 47, 55, 0.1);
+}
+
+.factor-name {
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+  text-transform: capitalize;
+}
+
+.factor-value {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.factor-number {
+  font-weight: 700;
+  color: var(--wine-light);
+  font-size: 1.05rem;
+  background: rgba(181, 131, 141, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+}
+
+.importance-badge {
+  background: linear-gradient(135deg, var(--wine-light) 0%, var(--wine-red) 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(114, 47, 55, 0.2);
+}
+
+/* ========================================
+   FOOTER - DARK MODE
+   ======================================== */
+.footer {
+  background: var(--dark-bg);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  text-align: center;
+  color: var(--dark-text-tertiary);
+  margin-top: 2rem;
+  border-top: 1px solid var(--dark-border);
+}
+
+.footer p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* ========================================
+   LOADING CONTAINER - DARK MODE
+   ======================================== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: var(--dark-text);
+  background: var(--dark-bg);
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid var(--dark-border-light);
+  border-top-color: var(--wine-light);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.loading-container p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 1200px) {
+  .app {
+    padding: 10px;
+  }
+  
+  .app-container {
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
+  
+  .app {
+    padding: 0;
+  }
+  
+  .app-container {
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    min-height: 100vh;
+  }
+  
+  .header {
+    padding: 1rem 0;
+  }
+  
+  .header-content {
+    padding: 0 1rem;
+  }
+  
+  .header-text h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header-text p {
+    font-size: 0.9rem;
+  }
+  
+  .main {
+    padding: 1.5rem 0;
+  }
+  
+  .main-grid {
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .preset-buttons {
+    flex-direction: column;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .quality-badge h3 {
+    font-size: 1.75rem;
+  }
+  
+  .footer {
+    padding: 1.5rem;
+  }
+}
