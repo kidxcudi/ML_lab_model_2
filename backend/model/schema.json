@@ -1,0 +1,56 @@
+{
+  "name": "Wine Quality Predictor",
+  "version": "2.0.0",
+  "model_type": "Pipeline (StandardScaler + SMOTE + DecisionTree)",
+  "classes": [
+    "Ordinary",
+    "Satisfactory",
+    "Premium"
+  ],
+  "class_mapping": {
+    "Ordinary": "Quality 3-4: Basic wine",
+    "Satisfactory": "Quality 5-6: Good wine",
+    "Premium": "Quality 7-9: Excellent wine"
+  },
+  "features": [
+    "fixed acidity",
+    "volatile acidity",
+    "citric acid",
+    "residual sugar",
+    "chlorides",
+    "free sulfur dioxide",
+    "total sulfur dioxide",
+    "density",
+    "pH",
+    "sulphates",
+    "alcohol"
+  ],
+  "feature_descriptions": {
+    "fixed_acidity": "Tartaric acid (g/dm\u00b3)",
+    "volatile_acidity": "Acetic acid (g/dm\u00b3)",
+    "citric_acid": "Freshness (g/dm\u00b3)",
+    "residual_sugar": "Sugar (g/dm\u00b3)",
+    "chlorides": "Salt (g/dm\u00b3)",
+    "free_sulfur_dioxide": "Free SO2 (mg/dm\u00b3)",
+    "total_sulfur_dioxide": "Total SO2 (mg/dm\u00b3)",
+    "density": "Density (g/cm\u00b3)",
+    "pH": "Acidity (0-14)",
+    "sulphates": "Additive (g/dm\u00b3)",
+    "alcohol": "Alcohol (% vol)"
+  },
+  "preprocessing": {
+    "pipeline_steps": [
+      "StandardScaler",
+      "SMOTE",
+      "DecisionTree"
+    ],
+    "note": "Pipeline handles all preprocessing automatically"
+  },
+  "hyperparameters": {
+    "class_weight": "balanced",
+    "criterion": "entropy",
+    "max_depth": 15,
+    "min_samples_leaf": 1,
+    "min_samples_split": 5
+  }
+}

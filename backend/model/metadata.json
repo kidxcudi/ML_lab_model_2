@@ -1,0 +1,32 @@
+{
+  "dataset": {
+    "name": "UCI Wine Quality (Red Wine)",
+    "samples_total": 1599,
+    "samples_train": 1279,
+    "samples_test": 320,
+    "features": 11
+  },
+  "class_distribution": {
+    "Substandard": 50,
+    "Satisfactory": 1055,
+    "Premium": 174
+  },
+  "performance": {
+    "test_accuracy": 0.784375,
+    "balanced_accuracy": 0.6285800762544949,
+    "f1_macro": 0.5673963133640553,
+    "f1_weighted": 0.8012366791474654,
+    "f1_Substandard": 0.25,
+    "f1_Satisfactory": 0.8629032258064516,
+    "f1_Premium": 0.5892857142857143
+  },
+  "model_details": {
+    "tree_depth": 15,
+    "tree_leaves": 226,
+    "best_cv_score": 0.5880112044817928
+  },
+  "calibration": {
+    "method": "isotonic",
+    "cv": 5
+  }
+}
