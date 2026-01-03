@@ -317,7 +317,6 @@ body {
   border-radius: 5px;
   background: linear-gradient(to right, var(--wine-light) 0%, var(--wine-red) 100%);
   outline: none;
-  -webkit-appearance: none;
   cursor: pointer;
 }
 
